@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Top Voted Albums</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/callback" class="button">Back to Albums</a>
+            <form action="/reset" method="POST" style="display: inline;">
+                <button type="submit" class="button">Reset Votes</button>
+            </form>
+        </nav>
+        
+        <h1>Top 10 Voted Albums</h1>
+        <div class="top-albums">
+            {{range .}}
+            <div class="top-album">
+                <span class="votes">{{.Votes}} votes</span>
+                <span class="album-id">{{.ID}}</span>
+            </div>
+            {{end}}
+        </div>
+    </div>
+</body>
+</html>

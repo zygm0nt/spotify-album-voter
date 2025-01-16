@@ -1,0 +1,60 @@
+<!-- templates/login.html -->
+<!-- templates/albums.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Albums</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/top" class="button">View Top 10</a>
+        </nav>
+        
+        <div class="albums-grid">
+            {{range .Albums}}
+            <div class="album-card">
+                <img src="{{.ImageURL}}" alt="{{.Name}}">
+                <h3>{{.Name}}</h3>
+                <p>{{.Artist}}</p>
+                <div class="votes">
+                    Votes: <span class="vote-count" data-id="{{.ID}}">{{.Votes}}</span>
+                </div>
+                <button onclick="voteForAlbum('{{.ID}}')" class="vote-button">Vote</button>
+            </div>
+            {{end}}
+        </div>
+    </div>
+</body>
+</html>
+
+<!-- templates/top.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Top Voted Albums</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="/callback" class="button">Back to Albums</a>
+            <form action="/reset" method="POST" style="display: inline;">
+                <button type="submit" class="button">Reset Votes</button>
+            </form>
+        </nav>
+        
+        <h1>Top 10 Voted Albums</h1>
+        <div class="top-albums">
+            {{range .}}
+            <div class="top-album">
+                <span class="votes">{{.Votes}} votes</span>
+                <span class="album-id">{{.ID}}</span>
+            </div>
+            {{end}}
+        </div>
+    </div>
+</body>
+</html>
